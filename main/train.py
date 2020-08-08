@@ -181,12 +181,12 @@ if __name__ == "__main__":
 
     (task, dataset, radius, dim, layer_hidden, layer_output,
      batch_train, batch_test, lr, lr_decay, decay_interval, iteration,
-     setting) = sys.argv[1:]
+     seed, setting) = sys.argv[1:]
     (radius, dim, layer_hidden, layer_output,
      batch_train, batch_test, decay_interval,
-     iteration) = map(int, [radius, dim, layer_hidden, layer_output,
+     iteration, seed) = map(int, [radius, dim, layer_hidden, layer_output,
                             batch_train, batch_test,
-                            decay_interval, iteration])
+                            decay_interval, iteration, seed])
     lr, lr_decay = map(float, [lr, lr_decay])
 
     if torch.cuda.is_available():
@@ -210,7 +210,7 @@ if __name__ == "__main__":
     print('-'*100)
 
     print('Creating a model.')
-    torch.manual_seed(1234)
+    torch.manual_seed(seed)
     model = MolecularGraphNeuralNetwork(
             N_fingerprints, dim, layer_hidden, layer_output).to(device)
     trainer = Trainer(model)
@@ -231,7 +231,7 @@ if __name__ == "__main__":
     print('Start training.')
     print('The result is saved in the output directory every epoch!')
 
-    np.random.seed(1234)
+    np.random.seed(seed)
 
     start = timeit.default_timer()
 
