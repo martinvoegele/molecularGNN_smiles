@@ -1,9 +1,7 @@
 import numpy as np
-import matplotlib.pyplot as plt
-%matplotlib inline
 
 targets = np.loadtxt('qm9_targets.dat',dtype=str)[:,1]
-factors = [1., 1., 27.2114, 27.2114, 27.2114, 1., 27211.4, 1., 1., 1., 1., 1., 0.043363, 0.043363, 0.043363, 0.043363, 1., 1., 1., 1., 0.043363]
+factors = [1., 1., 27.2114, 27.2114, 27.2114, 1., 27211.4, 1., 1., 1., 1., 1., 0.043363, 0.043363, 0.043363, 0.043363, 1., 1., 1., 0.043363]
 
 assert len(factors) == len(targets)
 
